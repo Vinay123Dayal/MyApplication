@@ -33,6 +33,7 @@ public class RegisterName extends AppCompatActivity {
                 Log.d("REgister","User");
                 User u = new User(id.getText().toString(), name.getText().toString(), password.getText().toString());
                 node.push().setValue(u);
+
                 Log.d("register","end");
             }
         });
