@@ -17,6 +17,7 @@ public class RegisterName extends AppCompatActivity {
     private EditText name;
     private EditText id;
     private EditText password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
