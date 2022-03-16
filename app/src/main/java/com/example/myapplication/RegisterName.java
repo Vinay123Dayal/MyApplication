@@ -24,6 +24,7 @@ public class RegisterName extends AppCompatActivity {
         sub = findViewById(R.id.submit_button);
         name = findViewById(R.id.user_name);
         id = findViewById(R.id.user_email);
+
         password = findViewById(R.id.user_password);
         sub.setOnClickListener(new View.OnClickListener() {
             @Override

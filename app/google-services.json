@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "219089542880",
+    "project_id": "dogwood-terra-307906",
+    "storage_bucket": "dogwood-terra-307906.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219089542880:android:e398737c13e8422e25ba85",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219089542880-mlaj1e39drq93b7ss5k2kdl5qav81ref.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH4nBWz_qbVgZm4MIUhxOVoNQOL6ODTGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219089542880-mlaj1e39drq93b7ss5k2kdl5qav81ref.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
