@@ -29,11 +29,11 @@ public class RegisterName extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("register","onclick");
-                DatabaseReference node = FirebaseDatabase.getInstance().getReference().child("User");
-                Log.d("REgister","User");
+                FirebaseDatabase node = FirebaseDatabase.getInstance();
+                DatabaseReference ref = node.getReference(User.class.getName());
                 User u = new User(id.getText().toString(), name.getText().toString(), password.getText().toString());
-                node.push().setValue(u);
-
+                ref.push().setValue(u);
+                ref.child(id.getText().toString()).setValue(u);
                 Log.d("register","end");
             }
         });
