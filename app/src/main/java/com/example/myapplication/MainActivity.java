@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("login_page", "Open");
         super.onCreate(savedInstanceState);
+        fun();
         setContentView(R.layout.activity_main);
 
         login = findViewById(R.id.login);
@@ -41,4 +42,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+    public  void fun(){
+        EventList.getInstance().add_data(new EventData("Cricket","Delhi",10));
+        EventList.getInstance().add_data(new EventData("KhoKho","Mumbai",10));
+        EventList.getInstance().add_data(new EventData("Chess","Kolkata",10));
+        EventList.getInstance().add_data(new EventData("Football","Bangalore",10));
+        EventList.getInstance().add_data(new EventData("BasketBall","China",10));
+        EventList.getInstance().add_data(new EventData("Baseball","Russia",10));
+        EventList.getInstance().add_data(new EventData("Pool","USA",10));
+
+
+    }
+
+
 }
