@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button sign_up;
     @Override
 
+
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("login_page", "Open");
         super.onCreate(savedInstanceState);
