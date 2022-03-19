@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,6 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,14 +31,35 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
         sign_up = findViewById(R.id.signup);
 
+
+        FirebaseFirestore db= FirebaseFirestore.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check if username and password available and correct.
-                Intent intent = new Intent(getApplicationContext(), MainScreen.class);
-                startActivity(intent);
+                System.out.println("IN");
+                db.collection("user").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    if (task.isSuccessful()) {
+                        System.out.println("out");
+                        System.out.println(task.getResult().isEmpty());
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            System.out.println(document.getData());
+                            Log.d("data",document.getId() + " => " + document.getData());
+                        }
+                        Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                        startActivity(intent);
+                    } else {
+                        System.out.println("out2");
+                        Log.d("data", "Error getting documents: ", task.getException());
+                    }
+                }
+                });
             }
         });
+
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +74,31 @@ public class MainActivity extends AppCompatActivity {
 
 
     public  void fun(){
+
+//        FirebaseFirestore db= FirebaseFirestore.getInstance();
+//
+//        db.collection("user").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//
+//                        if (task.isSuccessful()) {
+//                            System.out.println("out");
+//                            System.out.println(task.getResult().isEmpty());
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                System.out.println(document.getData());
+//                                Log.d("data",document.getId() + " => " + document.getData());
+//                            }
+//                            Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+//                            startActivity(intent);
+//                        } else {
+//                            System.out.println("out2");
+//                            Log.d("data", "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
+
+
         EventList.getInstance().add_data(new EventData("Cricket","Delhi",10));
         EventList.getInstance().add_data(new EventData("KhoKho","Mumbai",10));
         EventList.getInstance().add_data(new EventData("Chess","Kolkata",10));
