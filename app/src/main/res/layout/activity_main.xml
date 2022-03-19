@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
+
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
         android:text="GetPlayBuddy"
-        android:gravity="center"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="20dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginTop="20dp" />
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
         android:gravity="center"
-        android:layout_marginLeft="100dp"
         android:text="Enter your Name/Email"
         android:textAlignment="center"
         ></TextView>
@@ -34,54 +37,46 @@
         android:id="@+id/user_name"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="80dp"
         />
 
-
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Enter your Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
         android:gravity="center"
-        android:layout_marginLeft="100dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="318dp"></TextView>
+        android:text="Enter your Password"
+        android:textAlignment="center"/>
+
 
     <EditText
         android:id="@+id/LoginPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginLeft="100dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:inputType="textPassword"
         />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="56dp"
-        android:text="Login"
-        app:layout_constraintTop_toBottomOf="@+id/LoginPassword"
-        tools:ignore="MissingConstraints,UnknownId"
-        tools:layout_editor_absoluteX="154dp" />
+        <Button
+            android:id="@+id/login"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Login" />
 
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Sign up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        android:layout_marginLeft="150dp"
-        app:layout_constraintVertical_bias="0.403"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="155dp" />
+        <Button
+            android:id="@+id/signup"
+            android:layout_marginLeft="20dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Signup" />
+
+
+    </LinearLayout>
 
 
 

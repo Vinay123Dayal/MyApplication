@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/vdaya/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/vdaya/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main_screen.xml" value="0.176" />
-        <entry key="..\:/Users/vdaya/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_register_name.xml" value="0.2210144927536232" />
-        <entry key="..\:/Users/vdaya/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/fragment_create_form.xml" value="0.17527173913043478" />
+        <entry key="..\:/Users/abhin/Documents/semester8/BDA/MyApplication1/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/abhin/Documents/semester8/BDA/MyApplication1/app/src/main/res/layout/activity_main_screen.xml" value="0.1" />
+        <entry key="..\:/Users/abhin/Documents/semester8/BDA/MyApplication1/app/src/main/res/layout/activity_register_name.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/abhin/Documents/semester8/BDA/MyApplication1/app/src/main/res/layout/fragment1.xml" value="0.1" />
+        <entry key="..\:/Users/abhin/Documents/semester8/BDA/MyApplication1/app/src/main/res/layout/fragment_details.xml" value="0.1" />
+        <entry key="..\:/Users/abhin/Documents/semester8/BDA/MyApplication1/app/src/main/res/layout/fragment_listview.xml" value="0.1" />
+        <entry key="..\:/Users/abhin/Documents/semester8/BDA/MyApplication1/app/src/main/res/layout/single_dataview.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -19,6 +19,7 @@ import java.util.Map;
 public class RegisterName extends AppCompatActivity {
     Button sub;
 
+
     private EditText name;
     private EditText id;
     private EditText password;

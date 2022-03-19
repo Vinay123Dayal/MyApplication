@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,11 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         login = findViewById(R.id.login);
         sign_up = findViewById(R.id.signup);
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check if username and password available and correct.
                 Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                 startActivity(intent);
             }
@@ -41,4 +48,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }
