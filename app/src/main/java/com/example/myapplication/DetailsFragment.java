@@ -2,11 +2,13 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -51,15 +53,32 @@ public class DetailsFragment extends Fragment {
         Book_slots.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int total_slots = Integer.parseInt(Total_slots.getText().toString())-1;
-                Total_slots.setText(Integer.toString(total_slots));
-                Map<String, Object> mapper = new HashMap<>();
-                mapper.put("slots", Integer.toString(total_slots));
-                FirebaseFirestore db= FirebaseFirestore.getInstance();
-                db.collection("event").document(id).update(mapper);
-                EventList.getInstance().Delete_from_set(id);
 
+                Log.d("book","enter");
 
+                Log.d("book"," enter "+User.getInstance().getEvent_id());
+
+                if(User.getInstance().getEvent_id().equals("none")){
+                    Log.d("book","inside");
+                    int total_slots = Integer.parseInt(Total_slots.getText().toString())-1;
+                    Total_slots.setText(Integer.toString(total_slots));
+                    Map<String, Object> mapper = new HashMap<>();
+                    mapper.put("slots", Integer.toString(total_slots));
+                    FirebaseFirestore db= FirebaseFirestore.getInstance();
+                    db.collection("event").document(id).update(mapper);
+
+                    User.getInstance().setEvent_id(id);
+                    Map<String, Object> mapper1 = new HashMap<>();
+                    mapper1.put("event_id", id);
+                    FirebaseFirestore db1= FirebaseFirestore.getInstance();
+                    db.collection("user").document(User.getInstance().getUser_id()).update(mapper);
+                    Intent intent = new Intent(getActivity(), Participant_progress.class);
+                    intent.putExtra("event_id",id);
+                    startActivity(intent);
+
+                }else{
+                    Toast.makeText(getActivity(),"You have already Booked a slot",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

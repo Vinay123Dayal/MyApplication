@@ -44,6 +44,7 @@ public class RegisterName extends AppCompatActivity {
                 mapper.put("Name", name.getText().toString());
                 mapper.put("id", id.getText().toString());
                 mapper.put("password", password.getText().toString());
+                mapper.put("event_id", "none");
                 firebaseFirestore.collection("user").add(mapper);
             }
         });

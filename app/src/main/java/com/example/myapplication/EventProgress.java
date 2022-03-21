@@ -42,8 +42,8 @@ public class EventProgress extends AppCompatActivity {
         Event_Total_slots.setText(Integer.toString(eventData.getTotal_slots()));
         Event_Slots_left.setText(Integer.toString(eventData.getTotal_slots()));
 
-        start_download();
-        Log.d("EventProgress","Working");
+       // start_download();
+        Log.d("EventProgress","Working "+eventData.getId());
 
 
 

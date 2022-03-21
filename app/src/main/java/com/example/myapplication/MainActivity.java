@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,23 +25,26 @@ public class MainActivity extends AppCompatActivity {
 
     private Button login;
     private Button sign_up;
-    private EditText email;
-    private EditText password;
-
+    private TextView email;
+    private TextView password;
+    //    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("login_page", "Open");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = findViewById(R.id.user_email);
-        password = findViewById(R.id.user_password);
         login = findViewById(R.id.login);
         sign_up = findViewById(R.id.signup);
+        email = findViewById(R.id.user_email);
+        password = findViewById(R.id.LoginPassword);
+
+        FirebaseFirestore db= FirebaseFirestore.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseFirestore db= FirebaseFirestore.getInstance();
+
+                System.out.println("IN");
                 db.collection("user")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                                if (task.isSuccessful() && !(email.getText() == null) && !(password.getText() == null)) {
+                                if (task.isSuccessful()) {
                                     System.out.println("out");
                                     System.out.println(task.getResult().isEmpty());
                                     boolean check = false;
@@ -60,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
                                         System.out.println(temp1+" "+temp2+" "+my_email+" "+my_password);
                                         Log.d("data",document.getId() + " => " + document.getData());
                                         if(my_email.equals(temp1) && my_password.equals(temp2)){
+
+                                            User.getInstance().setName(document.getData().get("Name").toString());
+                                            User.getInstance().setEmail(document.getData().get("id").toString());
+                                            User.getInstance().setPassword(document.getData().get("password").toString());
+                                            User.getInstance().setEvent_id(document.getData().get("event_id").toString());
+                                            User.getInstance().setUser_id(document.getId());
+
+
                                             check = true;
                                             Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                                             startActivity(intent);
@@ -75,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                // check if username and password available and correct.
+
             }
         });
 
@@ -87,5 +101,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 }

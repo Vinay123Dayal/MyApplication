@@ -96,6 +96,7 @@ public class Form_for_host extends Fragment {
                 firebaseFirestore.collection("event").add(mapper);
 
                 String ID = fetch_id(s_name,location[0],zone[0],slt);
+                Log.d("form for host","id = "+ID);
                 EventData event_data = new EventData(s_name,location[0],zone[0],Integer.parseInt(slt),ID);
                 Intent intent = new Intent(getActivity(), EventProgress.class);
                 intent.putExtra("EventData", event_data);
