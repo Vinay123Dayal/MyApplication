@@ -29,6 +29,7 @@ public class ListViewFragment extends Fragment implements BuddyAdapter.Communica
         View view = inflater.inflate(R.layout.fragment_listview, container, false);
         Log.i("ListViewFragment", "open");
 
+        EventList.getInstance().get_list().clear();
         fetch_data();
 
         recyclerView=view.findViewById(R.id.recyclerView);
@@ -91,11 +92,10 @@ public class ListViewFragment extends Fragment implements BuddyAdapter.Communica
 
 
     public  void fun(String name,String location,String zone,int slots,String id){
-        if(!EventList.getInstance().check_if_exist(id)) {
-            EventList.getInstance().add_data(new EventData(name, location, zone, slots));
-            EventList.getInstance().Add_to_set(id);
-            Log.d("fun", "size = " + EventList.getInstance().get_list_size());
-            ba.notifyDataSetChanged();
-        }
+
+        EventList.getInstance().add_data(new EventData(name, location, zone, slots,id));
+        EventList.getInstance().Add_to_set(id);
+        Log.d("fun", "size = " + EventList.getInstance().get_list_size());
+        ba.notifyDataSetChanged();
     }
 }

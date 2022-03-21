@@ -7,7 +7,7 @@ public class EventData implements Serializable {
    private String Location;
    private int Total_slots;
     private String Zone;
-    private int index;
+    private String id;
 
     public String getZone() {
         return Zone;
@@ -19,20 +19,20 @@ public class EventData implements Serializable {
 
 
 
-    public EventData(String Name, String Location, String Zone,int Total_slots,int index){
+    public EventData(String Name, String Location, String Zone,int Total_slots,String id){
         this.Location =Location;
         this.Name = Name;
         this.Total_slots = Total_slots;
         this.Zone = Zone;
-        this.index = index;
+        this.id = id;
     }
 
-    public int getIndex() {
-        return index;
+    public String getId() {
+        return id;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setIndex(String id) {
+        this.id = id;
     }
 
     public String getName() {

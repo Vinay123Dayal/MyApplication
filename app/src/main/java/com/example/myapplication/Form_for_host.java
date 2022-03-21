@@ -1,9 +1,12 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +16,12 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
@@ -87,13 +94,56 @@ public class Form_for_host extends Fragment {
                 mapper.put("location", location[0]);
                 mapper.put("slots",slt);
                 firebaseFirestore.collection("event").add(mapper);
+
+                String ID = fetch_id(s_name,location[0],zone[0],slt);
+                EventData event_data = new EventData(s_name,location[0],zone[0],Integer.parseInt(slt),ID);
+                Intent intent = new Intent(getActivity(), EventProgress.class);
+                intent.putExtra("EventData", event_data);
+                startActivity(intent);
             }
         });
 
         return v;
 
-
     }
 
+
+    public String fetch_id(String Name,String Location,String Zone,String Slots){
+
+        final String[] ID = new String[1];
+        FirebaseFirestore db= FirebaseFirestore.getInstance();
+        System.out.println("IN");
+        db.collection("event")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+                            System.out.println("out");
+                            System.out.println(task.getResult().isEmpty());
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                System.out.println(document.getData());
+                                String name1 = (String) document.getData().get("Name");
+                                String location1 = (String) document.getData().get("location");
+                                String slots1 = (String) document.getData().get("slots");
+                                String zone1 = (String) document.getData().get("zone");
+                                String id = (String) document.getId();
+                                if(name1.equals(Name) && location1.equals(Location) && zone1.equals(Zone) && slots1.equals(Slots)){
+                                    ID[0] = id;
+                                    break;
+                                }
+                            }
+
+                        } else {
+                            System.out.println("out2");
+                            Log.d("data", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        // check if username and password available and correct.
+        return ID[0];
+    }
 
 }

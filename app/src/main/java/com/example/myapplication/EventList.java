@@ -20,6 +20,10 @@ public class EventList {
         hash_Set.add(id);
     }
 
+    public void Delete_from_set(String id){
+        hash_Set.remove(id);
+    }
+
     private EventList(){
         NewsArrayList = new ArrayList<>();
     }

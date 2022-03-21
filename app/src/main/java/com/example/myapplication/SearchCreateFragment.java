@@ -37,7 +37,7 @@ public class SearchCreateFragment extends Fragment {
         Create.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("MainScreen", "create clicked");
-                getFragmentManager().beginTransaction().replace(R.id.fragment, new ListViewFragment()).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment, new Form_for_host()).addToBackStack(null).commit();
             }
         });
 

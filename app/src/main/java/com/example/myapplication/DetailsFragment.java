@@ -10,6 +10,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class DetailsFragment extends Fragment {
     private TextView Name;
@@ -18,6 +23,7 @@ public class DetailsFragment extends Fragment {
     private EventData Data;
     private Button Book_slots;
     private TextView Zone;
+    private String id;
 
 
     @Override
@@ -38,11 +44,20 @@ public class DetailsFragment extends Fragment {
         Name.setText(Data.getName());
         Location.setText(Data.getLocation());
         Total_slots.setText(Integer.toString(Data.getTotal_slots()));
+        Zone.setText(Data.getZone());
+        id = Data.getId();
+
 
         Book_slots.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                int total_slots = Integer.parseInt(Total_slots.getText().toString())-1;
+                Total_slots.setText(Integer.toString(total_slots));
+                Map<String, Object> mapper = new HashMap<>();
+                mapper.put("slots", Integer.toString(total_slots));
+                FirebaseFirestore db= FirebaseFirestore.getInstance();
+                db.collection("event").document(id).update(mapper);
+                EventList.getInstance().Delete_from_set(id);
 
 
             }
