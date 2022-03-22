@@ -72,7 +72,7 @@ public class ListViewFragment extends Fragment implements BuddyAdapter.Communica
                                 System.out.println(document.getData());
                                 String name = (String) document.getData().get("Name");
                                 String location = (String) document.getData().get("location");
-                                String slots = (String) document.getData().get("slots");
+                                String slots = (String) document.getData().get("team_size");
                                 String zone = (String) document.getData().get("zone");
                                 String id = (String) document.getId();
                                 fun(name,location,zone,Integer.parseInt(slots),id);

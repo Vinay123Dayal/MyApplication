@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                             check = true;
                                             Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                                             startActivity(intent);
+                                            finish();
                                             break;
                                         }
                                     }
