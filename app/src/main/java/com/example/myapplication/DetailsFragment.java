@@ -10,8 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -42,12 +47,8 @@ public class DetailsFragment extends Fragment {
         Zone = view.findViewById(R.id.fragment_zone);
         Book_slots = view.findViewById(R.id.fragment_button);
 
-
-        Name.setText(Data.getName());
-        Location.setText(Data.getLocation());
-        Total_slots.setText(Integer.toString(Data.getTotal_slots()));
-        Zone.setText(Data.getZone());
         id = Data.getId();
+        show_data();
 
 
         Book_slots.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +75,8 @@ public class DetailsFragment extends Fragment {
                         Map<String, Object> mapper1 = new HashMap<>();
                         mapper1.put("event_id", id);
                         FirebaseFirestore db1= FirebaseFirestore.getInstance();
-                        db.collection("user").document(User.getInstance().getUser_id()).update(mapper);
+                        db1.collection("user").document(User.getInstance().getUser_id()).update(mapper1);
+
                         Intent intent = new Intent(getActivity(), Participant_progress.class);
                         intent.putExtra("event_id",id);
                         startActivity(intent);
@@ -90,5 +92,36 @@ public class DetailsFragment extends Fragment {
 
 
         return view;
+    }
+
+    public void show_data(){
+        FirebaseFirestore db= FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = db.collection("event").document(id);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("fetch data ff", "Name = " + document.getData().get("Name"));
+                        Log.d("fetch data ff", "location = " + document.getData().get("location"));
+                        Log.d("fetch data ff", "slots = " + document.getData().get("slots"));
+                        Log.d("fetch data ff", "zone = " + document.getData().get("zone"));
+
+                        Name.setText(document.getData().get("Name").toString());
+                        Location.setText(document.getData().get("location").toString());
+                        Zone.setText(document.getData().get("zone").toString());
+                        Total_slots.setText(document.getData().get("slots").toString());
+
+
+                    } else {
+                        Log.d("fetch data", "No such document");
+                    }
+                } else {
+                    Log.d("fetch data", "get failed with ", task.getException());
+                }
+            }
+        });
     }
 }

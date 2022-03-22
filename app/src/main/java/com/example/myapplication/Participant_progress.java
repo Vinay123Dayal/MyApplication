@@ -204,6 +204,14 @@ public class Participant_progress extends AppCompatActivity {
                             fetch_data();
                         } else {
                             flag = false;
+                            User.getInstance().setEvent_id("none");
+                            Map<String, Object> mapper = new HashMap<>();
+                            mapper.put("event_id", "none");
+                            FirebaseFirestore db= FirebaseFirestore.getInstance();
+                            db.collection("user").document(User.getInstance().getUser_id()).update(mapper);
+
+
+
                             Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
