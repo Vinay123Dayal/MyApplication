@@ -60,21 +60,27 @@ public class DetailsFragment extends Fragment {
 
                 if(User.getInstance().getEvent_id().equals("none")){
                     Log.d("book","inside");
-                    int total_slots = Integer.parseInt(Total_slots.getText().toString())-1;
-                    Total_slots.setText(Integer.toString(total_slots));
-                    Map<String, Object> mapper = new HashMap<>();
-                    mapper.put("slots", Integer.toString(total_slots));
-                    FirebaseFirestore db= FirebaseFirestore.getInstance();
-                    db.collection("event").document(id).update(mapper);
 
-                    User.getInstance().setEvent_id(id);
-                    Map<String, Object> mapper1 = new HashMap<>();
-                    mapper1.put("event_id", id);
-                    FirebaseFirestore db1= FirebaseFirestore.getInstance();
-                    db.collection("user").document(User.getInstance().getUser_id()).update(mapper);
-                    Intent intent = new Intent(getActivity(), Participant_progress.class);
-                    intent.putExtra("event_id",id);
-                    startActivity(intent);
+                    int total_slots = Integer.parseInt(Total_slots.getText().toString())-1;
+
+                    if(total_slots>=0){
+                        Total_slots.setText(Integer.toString(total_slots));
+                        Map<String, Object> mapper = new HashMap<>();
+                        mapper.put("slots", Integer.toString(total_slots));
+                        FirebaseFirestore db= FirebaseFirestore.getInstance();
+                        db.collection("event").document(id).update(mapper);
+
+                        User.getInstance().setEvent_id(id);
+                        Map<String, Object> mapper1 = new HashMap<>();
+                        mapper1.put("event_id", id);
+                        FirebaseFirestore db1= FirebaseFirestore.getInstance();
+                        db.collection("user").document(User.getInstance().getUser_id()).update(mapper);
+                        Intent intent = new Intent(getActivity(), Participant_progress.class);
+                        intent.putExtra("event_id",id);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getActivity(),"No slots left for the event",Toast.LENGTH_SHORT).show();
+                    }
 
                 }else{
                     Toast.makeText(getActivity(),"You have already Booked a slot",Toast.LENGTH_SHORT).show();
