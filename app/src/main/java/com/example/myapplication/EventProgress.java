@@ -65,8 +65,8 @@ public class EventProgress extends AppCompatActivity {
             public void onClick(View view) {
                 deleteEvent(eventData.getId());
                 Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -83,8 +83,8 @@ public class EventProgress extends AppCompatActivity {
                                 deleteEvent(eventData.getId());
                                 Log.d("Getter from met", "bhadwa");
                                 Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                                finish();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -120,8 +120,8 @@ public class EventProgress extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         deleteEvent(eventData.getId());
                         Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                        finish();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

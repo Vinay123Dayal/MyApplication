@@ -185,6 +185,7 @@ public class Participant_progress extends AppCompatActivity {
 
 
         Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -204,8 +205,8 @@ public class Participant_progress extends AppCompatActivity {
                         } else {
                             flag = false;
                             Intent intent = new Intent(getApplicationContext(), MainScreen.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            finish();
                         }
                     } else {
                         Log.d("check event", "Failed with: ", task.getException());

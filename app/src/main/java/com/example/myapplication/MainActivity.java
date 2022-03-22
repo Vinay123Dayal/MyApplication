@@ -73,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                                             check = true;
+                                            email.setText("");
+                                            password.setText("");
                                             Intent intent = new Intent(getApplicationContext(), MainScreen.class);
                                             startActivity(intent);
-                                            finish();
+
                                             break;
                                         }
                                     }
